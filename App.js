@@ -5,6 +5,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
 import HomeScreen from './screens/HomeScreen';
+import ProfileScreen from './screens/ProfileScreen';
 
 function HomeTab() {
   return (
@@ -13,11 +14,10 @@ function HomeTab() {
   );
 }
 
-function SpendingTab() {
+function ProfileTab() {
   return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Spendin!</Text>
-    </View>
+    <ProfileScreen/>
+    // <Text>Hi</Text>
   );
 }
 
@@ -33,10 +33,10 @@ export default function App() {
 
             if (route.name === 'Home') {
               iconName = focused
-                ? 'home'
-                : 'home-outline';
-            } else if (route.name === 'Spending') {
-              iconName = focused ? 'card' : 'card-outline';
+                ? 'card'
+                : 'card-outline';
+            } else if (route.name === 'Profile') {
+              iconName = focused ? 'person' : 'person-outline';
             }
 
             // You can return any component that you like here!
@@ -47,7 +47,7 @@ export default function App() {
         })}
       >
         <Tab.Screen name="Home" component={HomeTab} />
-        <Tab.Screen name="Spending" component={SpendingTab} />
+        <Tab.Screen name="Profile" component={ProfileTab} />
       </Tab.Navigator>
     </NavigationContainer>
   );

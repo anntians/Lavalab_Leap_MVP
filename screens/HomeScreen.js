@@ -1,20 +1,19 @@
 import { Box, Heading, FlatList, HStack, Avatar, VStack, Spacer, NativeBaseProvider, ScrollView} from 'native-base';
 import React from 'react';
 import { Image, View,StyleSheet, Text, Dimensions } from 'react-native';
+import Card from '../assets/card.png';
 
 
 
 function HomeScreen(props) {
     return (
         <NativeBaseProvider>
-        <View style = {styles.container}>
-            <Text style = {styles.card_text}>Card: </Text>
-            <Image resizeMode='contain' style = {styles.card_image} source={require('../assets/card.png')}/>
-            <Text style = {styles.overview_text}>Overview: </Text>
-
-            <Example/>
-
-        </View>
+          <View style = {styles.container}>
+              {/* <Text style = {styles.card_text}>Card: </Text> */}
+              <Image resizeMode='contain' style = {styles.card_image} source={Card}/>
+              {/* <Text style = {styles.overview_text}>Overview: </Text> */}
+              <Example/>
+          </View>
         </NativeBaseProvider>
 
         
@@ -81,16 +80,16 @@ const Example = () => {
     return(
         <ScrollView>
         <Box>
-        <Heading fontSize="xl" p="10" pb="3">
+        <Heading fontSize="xl" p="10" pb="3" pl='-2'>
           Transactions
         </Heading>
         <FlatList data={data} renderItem={({
         item
       }) => <Box borderBottomWidth="1" _dark={{
         borderColor: "muted.50"
-      }} borderColor="muted.800" pl={["0", "4"]} pr={["0", "5"]} py="2">
-              <HStack space={[2, 3]} justifyContent="space-between">
-                <Avatar size="48px" source={{
+      }} borderColor="muted.800" pl={["0", "0"]} pr={["0", "0"]} py="1">
+              <HStack space={[1, 3]} justifyContent="space-between">
+                <Avatar size="30px" source={{
             uri: item.avatarUrl
           }} />
                 <VStack>
@@ -122,16 +121,15 @@ const Example = () => {
 
 const styles = StyleSheet.create({
     card_image:{
-        width: '90%',
-        height: '30%',
+        width: '100%',
+        height: '35%',
         // backgroundColor: "green",
-        top: 10
-        
+        top: 20,
+        bottom: 20
     },
     container: {
         alignItems: 'center',
         flex: 1,
-        // backgroundColor: "orange"
         backgroundColor: 'white'
     },
     card_text: {
