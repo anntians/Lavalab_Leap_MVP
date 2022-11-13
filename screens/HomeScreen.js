@@ -2,6 +2,20 @@ import { Box, Heading, FlatList, HStack, Avatar, VStack, Spacer, NativeBaseProvi
 import React from 'react';
 import { Image, View,StyleSheet, Text, Dimensions } from 'react-native';
 import Card from '../assets/card.png';
+import StarBucks from '../assets/starbucks.png';
+import Cava from '../assets/cava.png';
+import HoneyBird from '../assets/honeybird.png';
+import Dulce from '../assets/dulce.png';
+
+//import React Native chart Kit for different kind of Chart
+import {
+  LineChart,
+  BarChart,
+  PieChart,
+  ProgressChart,
+  ContributionGraph,
+  StackedBarChart,
+} from 'react-native-chart-kit';
 
 
 
@@ -9,9 +23,12 @@ function HomeScreen(props) {
     return (
         <NativeBaseProvider>
           <View style = {styles.container}>
-              {/* <Text style = {styles.card_text}>Card: </Text> */}
+              <Text style = {styles.card_text}>Card: </Text>
               <Image resizeMode='contain' style = {styles.card_image} source={Card}/>
-              {/* <Text style = {styles.overview_text}>Overview: </Text> */}
+              <Text style = {styles.overview_text}>Overview: </Text>
+              <MyProgressChart/>
+              <Text style = {styles.transaction_text}>Transactions: </Text>
+              
               <Example/>
           </View>
         </NativeBaseProvider>
@@ -20,102 +37,119 @@ function HomeScreen(props) {
     );
 }
 
+const MyProgressChart = () => {
+  return (
+    <>
+      <ProgressChart
+        data={[0.4, 0.6]}
+        width={Dimensions.get('window').width - 16}
+        height={150}
+        chartConfig={{
+          backgroundColor: 'red',
+          backgroundGradientFrom: 'white',
+          backgroundGradientTo: 'white',
+          decimalPlaces: 2,
+          color: (opacity = 1) => `rgba(0, 255, 00, ${opacity})`,
+          style: {
+            borderRadius: 16,
+          },
+        }}
+        style={{
+          marginVertical: 8,
+          borderRadius: 16,
+          padding: 10
+        }}
+      />
+    </>
+  );
+};
+
 const Example = () => {
-    const data = [{
-      id: "bd7acbea-c1b1-46c2-aed5-3ad53abb28ba",
-      fullName: "Starbucks Coffee",
-      timeStamp: "12:47 PM",
-      recentText: "$4.57",
-      avatarUrl: "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
-    }, {
-      id: "3ac68afc-c605-48d3-a4f8-fbd91aa97f63",
-      fullName: "Delce Coffee",
-      timeStamp: "11:11 PM",
-      recentText: "$5.47",
-      avatarUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTyEaZqT3fHeNrPGcnjLLX1v_W4mvBlgpwxnA&usqp=CAU"
-    }, {
-      id: "58694a0f-3da1-471f-bd96-145571e29d72",
-      fullName: "HoneyBird",
-      timeStamp: "6:22 PM",
-      recentText: "$12.11",
-      avatarUrl: "https://miro.medium.com/max/1400/0*0fClPmIScV5pTLoE.jpg"
-    }, {
-      id: "68694a0f-3da1-431f-bd56-142371e29d72",
-      fullName: "Cava",
-      timeStamp: "8:56 PM",
-      recentText: "$12.34",
-      avatarUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSr01zI37DYuR8bMV5exWQBSw28C1v_71CAh8d7GP1mplcmTgQA6Q66Oo--QedAN1B4E1k&usqp=CAU"
-    }, {
-      id: "28694a0f-3da1-471f-bd96-142456e29d72",
-      fullName: "Dulce Club Sandwhich",
-      timeStamp: "12:47 PM",
-      recentText: "$11.34",
-      avatarUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBwgu1A5zgPSvfE83nurkuzNEoXs9DMNr8Ww&usqp=CAU"
-    },{
-        id: "28694a0f-3da1-471f-bd96-142456e29d72",
-        fullName: "Dulce Club Sandwhich",
-        timeStamp: "12:47 PM",
-        recentText: "$11.34",
-        avatarUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBwgu1A5zgPSvfE83nurkuzNEoXs9DMNr8Ww&usqp=CAU"
-      },{
-        id: "28694a0f-3da1-471f-bd96-142456e29d72",
-        fullName: "Dulce Club Sandwhich",
-        timeStamp: "12:47 PM",
-        recentText: "$11.34",
-        avatarUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBwgu1A5zgPSvfE83nurkuzNEoXs9DMNr8Ww&usqp=CAU"
-      },{
-        id: "28694a0f-3da1-471f-bd96-142456e29d72",
-        fullName: "Dulce Club Sandwhich",
-        timeStamp: "12:47 PM",
-        recentText: "$11.34",
-        avatarUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBwgu1A5zgPSvfE83nurkuzNEoXs9DMNr8Ww&usqp=CAU"
-      },{
-        id: "28694a0f-3da1-471f-bd96-142456e29d72",
-        fullName: "Dulce Club Sandwhich",
-        timeStamp: "12:47 PM",
-        recentText: "$11.34",
-        avatarUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBwgu1A5zgPSvfE83nurkuzNEoXs9DMNr8Ww&usqp=CAU"
-      }
-    ];
-    return(
-        <ScrollView>
-        <Box>
-        <Heading fontSize="xl" p="10" pb="3" pl='-2'>
-          Transactions
-        </Heading>
-        <FlatList data={data} renderItem={({
-        item
-      }) => <Box borderBottomWidth="1" _dark={{
-        borderColor: "muted.50"
-      }} borderColor="muted.800" pl={["0", "0"]} pr={["0", "0"]} py="1">
-              <HStack space={[1, 3]} justifyContent="space-between">
-                <Avatar size="30px" source={{
-            uri: item.avatarUrl
-          }} />
-                <VStack>
-                  <Text _dark={{
-              color: "warmGray.50"
-            }} color="coolGray.800" bold>
-                    {item.fullName}
-                  </Text>
-                  <Text color="coolGray.600" _dark={{
-              color: "warmGray.200"
-            }}>
-                    {item.recentText}
-                  </Text>
-                </VStack>
-                <Spacer />
-                <Text fontSize="xs" _dark={{
+  const data = [{
+    id: "bd7acbea-c1b1-46c2-aed5-3ad53abb28ba",
+    fullName: "Starbucks",
+    timeStamp: "12:47 PM",
+    recentText: "$4.58",
+    image: StarBucks
+  }, {
+    id: "3ac68afc-c605-48d3-a4f8-fbd91aa97f63",
+    fullName: "Cava",
+    timeStamp: "11:11 PM",
+    recentText: "$11.56",
+    image: Cava
+  }, {
+    id: "58694a0f-3da1-471f-bd96-145571e29d72",
+    fullName: "Honey Bird",
+    timeStamp: "6:22 PM",
+    recentText: "$8.89",
+    image: HoneyBird
+  }, {
+    id: "68694a0f-3da1-431f-bd56-142371e29d72",
+    fullName: "Dulce",
+    timeStamp: "8:56 PM",
+    recentText: "$4.78",
+    image: Dulce
+  }, {
+    id: "28694a0f-3da1-471f-bd96-142456e29d72",
+    fullName: "Starbucks",
+    timeStamp: "6:22 PM",
+    recentText: "$8.89",
+    image: StarBucks
+  }, {
+    id: "28694a0f-3da1-471f-bd96-142456e29d76",
+    fullName: "Honey Bird",
+    timeStamp: "6:22 PM",
+    recentText: "$8.89",
+    image: HoneyBird
+  }, {
+    id: "68694a0f-3da1-431f-bd56-142371e29d78",
+    fullName: "Dulce",
+    timeStamp: "8:56 PM",
+    recentText: "$4.78",
+    image: Dulce
+  }, {
+    id: "28694a0f-3da1-471f-bd96-142456e29d79",
+    fullName: "Honey Bird",
+    timeStamp: "6:22 PM",
+    recentText: "$8.89",
+    image: HoneyBird
+  }, {
+    id: "28694a0f-3da1-471f-bd96-142456e29d73",
+    fullName: "Honey Bird",
+    timeStamp: "6:22 PM",
+    recentText: "$8.89",
+    image: HoneyBird
+  }];
+  return <Box height={200} p="5" pb="2">
+      <FlatList data={data} renderItem={({
+      item
+    }) => <Box borderBottomWidth="1" _dark={{
+      borderColor: "muted.50"
+    }} borderColor="muted.800" pl={["0", "4"]} pr={["0", "5"]} py="2">
+            <HStack space={[12, 3]} justifyContent="space-between">
+              <Avatar size="48px" source={item.image} />
+              <VStack>
+                <Text _dark={{
             color: "warmGray.50"
-          }} color="coolGray.800" alignSelf="flex-start">
-                  {item.timeStamp}
+          }} color="coolGray.800" bold>
+                  {item.fullName}
                 </Text>
-              </HStack>
-            </Box>} keyExtractor={item => item.id} />
-      </Box>
-      </ScrollView>);
-    
-  };
+                <Text color="coolGray.600" _dark={{
+            color: "warmGray.200"
+          }}>
+                  {item.recentText}
+                </Text>
+              </VStack>
+              <Spacer />
+              <Text fontSize="xs" _dark={{
+          color: "warmGray.50"
+        }} color="coolGray.800" alignSelf="flex-start">
+                {item.timeStamp}
+              </Text>
+            </HStack>
+          </Box>} keyExtractor={item => item.id} />
+    </Box>;
+};
 
 
 
@@ -142,6 +176,11 @@ const styles = StyleSheet.create({
         top: 20,
         color:"grey"
     },
+    transaction_text:{
+        left: '-33%',
+        top: 20,
+        color:"grey"
+    }
  
 })
 
