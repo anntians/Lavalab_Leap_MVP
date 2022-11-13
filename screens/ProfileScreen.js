@@ -4,7 +4,7 @@ import { Image, View,StyleSheet, Text, Dimensions } from 'react-native';
 import Slider from '@react-native-community/slider'
 import { gestureHandlerRootHOC } from 'react-native-gesture-handler';
 import { disableExpoCliLogging } from 'expo/build/logs/Logs';
-import warningIcon from '../assets/warningicon.svg';
+import warningIcon from '../assets/warningIcon.png';
 
 function ProfileScreen(props) {
 
@@ -43,73 +43,74 @@ function ProfileScreen(props) {
         
     );
 }
-
 const Example = () => {
     const data = [{
       id: "bd7acbea-c1b1-46c2-aed5-3ad53abb28ba",
       fullName: "Review Action",
       timeStamp: "12:47 PM",
-      recentText: "Child in Yellow Zone for food!",
-      avatarUrl: "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
+      recentText: "Transaction above limit attempted!",
+      image: warningIcon
     }, {
       id: "3ac68afc-c605-48d3-a4f8-fbd91aa97f63",
       fullName: "Review Action",
       timeStamp: "11:11 PM",
-      recentText: "Child in Red Zone for clothing!",
-      avatarUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTyEaZqT3fHeNrPGcnjLLX1v_W4mvBlgpwxnA&usqp=CAU"
+      recentText: "Transaction above limit attempted!",
+      image: warningIcon
     }, {
       id: "58694a0f-3da1-471f-bd96-145571e29d72",
       fullName: "Review Action",
       timeStamp: "6:22 PM",
-      recentText: "Child in Yellow Zone for food!",
-      avatarUrl: "https://miro.medium.com/max/1400/0*0fClPmIScV5pTLoE.jpg"
+      recentText: "Transaction above limit attempted!",
+      image: warningIcon
     }, {
       id: "68694a0f-3da1-431f-bd56-142371e29d72",
+      fullName: "Dulce",
+      timeStamp: "8:56 PM",
+      recentText: "Transaction above limit attempted!",
+      image: warningIcon
+    }, {
+      id: "28694a0f-3da1-471f-bd96-142456e29d72",
+      fullName: "Review Action",
+      timeStamp: "6:22 PM",
+      recentText: "Transaction above limit attempted!",
+      image: warningIcon
+    }, {
+      id: "28694a0f-3da1-471f-bd96-142456e29d76",
+      fullName: "Review Action",
+      timeStamp: "6:22 PM",
+      recentText: "Transaction above limit attempted!",
+      image: warningIcon
+    }, {
+      id: "68694a0f-3da1-431f-bd56-142371e29d78",
       fullName: "Review Action",
       timeStamp: "8:56 PM",
       recentText: "Transaction above limit attempted!",
-      avatarUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSr01zI37DYuR8bMV5exWQBSw28C1v_71CAh8d7GP1mplcmTgQA6Q66Oo--QedAN1B4E1k&usqp=CAU"
+      image: warningIcon
     }, {
-        id: "68694a0f-3da1-431f-bd56-142371e29d72",
-        fullName: "Review Action",
-        timeStamp: "8:56 PM",
-        recentText: "Transaction above limit attempted!",
-        avatarUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSr01zI37DYuR8bMV5exWQBSw28C1v_71CAh8d7GP1mplcmTgQA6Q66Oo--QedAN1B4E1k&usqp=CAU"
-      }, {
-        id: "68694a0f-3da1-431f-bd56-142371e29d72",
-        fullName: "Review Action",
-        timeStamp: "8:56 PM",
-        recentText: "Transaction above limit attempted!",
-        avatarUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSr01zI37DYuR8bMV5exWQBSw28C1v_71CAh8d7GP1mplcmTgQA6Q66Oo--QedAN1B4E1k&usqp=CAU"
-      }, {
-        id: "68694a0f-3da1-431f-bd56-142371e29d72",
-        fullName: "Review Action",
-        timeStamp: "8:56 PM",
-        recentText: "Transaction above limit attempted!",
-        avatarUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSr01zI37DYuR8bMV5exWQBSw28C1v_71CAh8d7GP1mplcmTgQA6Q66Oo--QedAN1B4E1k&usqp=CAU"
-      }, {
-        id: "68694a0f-3da1-431f-bd56-142371e29d72",
-        fullName: "Review Action",
-        timeStamp: "8:56 PM",
-        recentText: "Transaction above limit attempted!",
-        avatarUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSr01zI37DYuR8bMV5exWQBSw28C1v_71CAh8d7GP1mplcmTgQA6Q66Oo--QedAN1B4E1k&usqp=CAU"
-      }, 
-    ];
-    return(
-        <Box height ={200}>
-        <Text style= {styles.box_textTitle}>Recent Notifications</Text>
-        <FlatList data={data} renderItem={({item
-      }) => <Box borderWidth="0" mbackgroundColor="muted.200" _dark={{
-        borderColor: "muted.300"
-      }} borderColor="muted.300" borderRadius= "10" pl={["1", "1"]} pr={["1", "1"]} py="1">
-              <HStack space={[3, 3]} justifyContent="space-between">
-                <Avatar size="30px" source={{
-            uri: item.avatarUrl
-          }} />
+      id: "28694a0f-3da1-471f-bd96-142456e29d79",
+      fullName: "Review Action",
+      timeStamp: "6:22 PM",
+      recentText: "Transaction above limit attempted!",
+      image: warningIcon
+    }, {
+      id: "28694a0f-3da1-471f-bd96-142456e29d73",
+      fullName: "Review Action",
+      timeStamp: "6:22 PM",
+      recentText: "Transaction above limit attempted!",
+      image: warningIcon
+    }];
+    return <Box height={200} p="5" pb="2">
+        <FlatList data={data} renderItem={({
+        item
+      }) => <Box borderBottomWidth="1" _dark={{
+        borderColor: "muted.50"
+      }} borderColor="muted.800" pl={["0", "4"]} pr={["0", "5"]} py="2">
+              <HStack space={[12, 3]} justifyContent="space-between">
+                <Avatar size="48px" source={item.image} />
                 <VStack>
                   <Text _dark={{
-              color: "muted.300"
-            }} color="muted.300" bold>
+              color: "warmGray.50"
+            }} color="coolGray.800" bold>
                     {item.fullName}
                   </Text>
                   <Text color="coolGray.600" _dark={{
@@ -126,9 +127,90 @@ const Example = () => {
                 </Text>
               </HStack>
             </Box>} keyExtractor={item => item.id} />
-      </Box>);
-    
+      </Box>;
   };
+  
+// const Example = () => {
+//     const data = [{
+//       id: "bd7acbea-c1b1-46c2-aed5-3ad53abb28ba",
+//       fullName: "Review Action",
+//       timeStamp: "12:47 PM",
+//       recentText: "Child in Yellow Zone for food!",
+//       image: warningIcon
+//     }, {
+//       id: "3ac68afc-c605-48d3-a4f8-fbd91aa97f63",
+//       fullName: "Review Action",
+//       timeStamp: "11:11 PM",
+//       recentText: "Child in Red Zone for clothing!",
+//       image: warningIcon
+//     }, {
+//       id: "58694a0f-3da1-471f-bd96-145571e29d72",
+//       fullName: "Review Action",
+//       timeStamp: "6:22 PM",
+//       recentText: "Child in Yellow Zone for food!",
+//       image: warningIcon
+//     }, {
+//       id: "68694a0f-3da1-431f-bd56-142371e29d72",
+//       fullName: "Review Action",
+//       timeStamp: "8:56 PM",
+//       recentText: "Transaction above limit attempted!",
+//       image: warningIcon
+//     }, {
+//         id: "68694a0f-3da1-431f-bd56-142371e29d72",
+//         fullName: "Review Action",
+//         timeStamp: "8:56 PM",
+//         recentText: "Transaction above limit attempted!",
+//         image: warningIcon
+//       }, {
+//         id: "68694a0f-3da1-431f-bd56-142371e29d72",
+//         fullName: "Review Action",
+//         timeStamp: "8:56 PM",
+//         recentText: "Transaction above limit attempted!",
+//         image: warningIcon
+//       }, {
+//         id: "68694a0f-3da1-431f-bd56-142371e29d72",
+//         fullName: "Review Action",
+//         timeStamp: "8:56 PM",
+//         recentText: "Transaction above limit attempted!",
+//         image: warningIcon
+//       }, {
+//         id: "68694a0f-3da1-431f-bd56-142371e29d72",
+//         fullName: "Review Action",
+//         timeStamp: "8:56 PM",
+//         recentText: "Transaction above limit attempted!",
+//         image: warningIcon
+//       }, 
+//     ];
+//     return <Box height={200} p="5" pb="2">
+//       <FlatList data={data} renderItem={({
+//       item
+//     }) => <Box borderBottomWidth="1" _dark={{
+//       borderColor: "muted.50"
+//     }} borderColor="muted.800" pl={["0", "4"]} pr={["0", "5"]} py="2">
+//             <HStack space={[12, 3]} justifyContent="space-between">
+//               <Avatar size="48px" source={item.image} />
+//               <VStack>
+//                 <Text _dark={{
+//             color: "warmGray.50"
+//           }} color="coolGray.800" bold>
+//                   {item.fullName}
+//                 </Text>
+//                 <Text color="coolGray.600" _dark={{
+//             color: "warmGray.200"
+//           }}>
+//                   {item.recentText}
+//                 </Text>
+//               </VStack>
+//               <Spacer />
+//               <Text fontSize="xs" _dark={{
+//           color: "warmGray.50"
+//         }} color="coolGray.800" alignSelf="flex-start">
+//                 {item.timeStamp}
+//               </Text>
+//             </HStack>
+//           </Box>} keyExtractor={item => item.id} />
+//     </Box>;
+// };
 
 const styles = StyleSheet.create({
     title: {
