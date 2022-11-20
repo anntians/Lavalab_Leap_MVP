@@ -1,18 +1,43 @@
-import { Box, Heading, FlatList, HStack, Avatar, VStack, Spacer, NativeBaseProvider, ScrollView} from 'native-base';
+import { Box, Heading, FlatList, HStack, Avatar, VStack, Spacer, NativeBaseProvider, ScrollView, Button} from 'native-base';
 import React, {useState} from 'react';
-import { Image, View,StyleSheet, Text, Dimensions } from 'react-native';
+import { Image, View,StyleSheet, Text, Dimensions, TouchableOpacity } from 'react-native';
 import Slider from '@react-native-community/slider'
 import { gestureHandlerRootHOC } from 'react-native-gesture-handler';
 import { disableExpoCliLogging } from 'expo/build/logs/Logs';
 import warningIcon from '../assets/warningIcon.png';
 
+import { initializeApp } from 'firebase/app';
+import {getFirestore, setDoc, doc} from 'firebase/firestore';
+
+
 function ProfileScreen(props) {
+
+  // Initialize Firebase
+  const firebaseConfig = {
+    apiKey: "AIzaSyBrHL2_VU2d1_KjLz_IdQcssYE91pCRO3w",
+    authDomain: "lavalableap-29c50.firebaseapp.com",
+    projectId: "lavalableap-29c50",
+    storageBucket: "lavalableap-29c50.appspot.com",
+    messagingSenderId: "811090392177",
+    appId: "1:811090392177:web:559ca2825d7c4f915597d0",
+    measurementId: "G-WB9KKJS664"
+  };
+
+  const app = initializeApp(firebaseConfig);
+
+  const sendDataToFireStore = async() =>{
+    const firestore = getFirestore(app);
+    await setDoc(doc(firestore, "users", "features"),{
+      childSpendingLimit: Math.floor(range*300),
+    });
+  }
 
     const [range,setRange] = useState(0)
 
 
     return (
         <NativeBaseProvider>
+
           <View style = {styles.container}>
             <Text style = {styles.title}>Profile</Text>
             <Text style = {styles.overview_text}>Current Credit Score</Text>
@@ -34,6 +59,13 @@ function ProfileScreen(props) {
             minimumTrackTintColor='#A0D995'
             />
             {/* <Text style = {styles.overview_text}>Recent Notifications</Text> */}
+            {/* <Button title="Learn More" style = {styles.sendButton}  onPress={sendDataToFireStore} ></Button> */}
+
+            <TouchableOpacity style = {styles.button} onPress={sendDataToFireStore}>
+                <Text style = {styles.buttonText}>Add</Text>
+              </TouchableOpacity>
+
+
             <Example/>
             
           </View>
@@ -130,87 +162,7 @@ const Example = () => {
       </Box>;
   };
   
-// const Example = () => {
-//     const data = [{
-//       id: "bd7acbea-c1b1-46c2-aed5-3ad53abb28ba",
-//       fullName: "Review Action",
-//       timeStamp: "12:47 PM",
-//       recentText: "Child in Yellow Zone for food!",
-//       image: warningIcon
-//     }, {
-//       id: "3ac68afc-c605-48d3-a4f8-fbd91aa97f63",
-//       fullName: "Review Action",
-//       timeStamp: "11:11 PM",
-//       recentText: "Child in Red Zone for clothing!",
-//       image: warningIcon
-//     }, {
-//       id: "58694a0f-3da1-471f-bd96-145571e29d72",
-//       fullName: "Review Action",
-//       timeStamp: "6:22 PM",
-//       recentText: "Child in Yellow Zone for food!",
-//       image: warningIcon
-//     }, {
-//       id: "68694a0f-3da1-431f-bd56-142371e29d72",
-//       fullName: "Review Action",
-//       timeStamp: "8:56 PM",
-//       recentText: "Transaction above limit attempted!",
-//       image: warningIcon
-//     }, {
-//         id: "68694a0f-3da1-431f-bd56-142371e29d72",
-//         fullName: "Review Action",
-//         timeStamp: "8:56 PM",
-//         recentText: "Transaction above limit attempted!",
-//         image: warningIcon
-//       }, {
-//         id: "68694a0f-3da1-431f-bd56-142371e29d72",
-//         fullName: "Review Action",
-//         timeStamp: "8:56 PM",
-//         recentText: "Transaction above limit attempted!",
-//         image: warningIcon
-//       }, {
-//         id: "68694a0f-3da1-431f-bd56-142371e29d72",
-//         fullName: "Review Action",
-//         timeStamp: "8:56 PM",
-//         recentText: "Transaction above limit attempted!",
-//         image: warningIcon
-//       }, {
-//         id: "68694a0f-3da1-431f-bd56-142371e29d72",
-//         fullName: "Review Action",
-//         timeStamp: "8:56 PM",
-//         recentText: "Transaction above limit attempted!",
-//         image: warningIcon
-//       }, 
-//     ];
-//     return <Box height={200} p="5" pb="2">
-//       <FlatList data={data} renderItem={({
-//       item
-//     }) => <Box borderBottomWidth="1" _dark={{
-//       borderColor: "muted.50"
-//     }} borderColor="muted.800" pl={["0", "4"]} pr={["0", "5"]} py="2">
-//             <HStack space={[12, 3]} justifyContent="space-between">
-//               <Avatar size="48px" source={item.image} />
-//               <VStack>
-//                 <Text _dark={{
-//             color: "warmGray.50"
-//           }} color="coolGray.800" bold>
-//                   {item.fullName}
-//                 </Text>
-//                 <Text color="coolGray.600" _dark={{
-//             color: "warmGray.200"
-//           }}>
-//                   {item.recentText}
-//                 </Text>
-//               </VStack>
-//               <Spacer />
-//               <Text fontSize="xs" _dark={{
-//           color: "warmGray.50"
-//         }} color="coolGray.800" alignSelf="flex-start">
-//                 {item.timeStamp}
-//               </Text>
-//             </HStack>
-//           </Box>} keyExtractor={item => item.id} />
-//     </Box>;
-// };
+
 
 const styles = StyleSheet.create({
     title: {
@@ -280,7 +232,20 @@ const styles = StyleSheet.create({
         color:'white',
         textAlign: 'center',
         alignItems:'center'
+    },
+    button:{
+      height: 30,
+      borderRadius: 5,
+      backgroundColor:'#A0D995',
+      width:80,
+      alignItems:'center',
+      justifyContent:'center'
+    },
+    buttonText:{
+      color: 'white',
+      fonSize:20
     }
+
  
 })
 
