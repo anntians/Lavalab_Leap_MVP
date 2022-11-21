@@ -1,6 +1,10 @@
 import { Box, Heading, FlatList, HStack, Avatar, VStack, Spacer, NativeBaseProvider, ScrollView} from 'native-base';
-import React from 'react';
+import React, {useCallback, useRef, useState} from 'react';
 import { Image, View,StyleSheet, Text, Dimensions } from 'react-native';
+import BottomSheet, { BottomSheetFlatList, BottomSheetView } from "@gorhom/bottom-sheet";
+
+
+
 import Card from '../assets/card.png';
 import StarBucks from '../assets/starbucks.png';
 import Cava from '../assets/cava.png';
@@ -20,18 +24,52 @@ import {
 
 
 function HomeScreen(props) {
+
+  const sheetRef = useRef(null);
+  const snapPoints = ["35%", "80%"];
+
     return (
-        <NativeBaseProvider>
-          <View style = {styles.container}>
-              <Text style = {styles.card_text}>Card: </Text>
-              <Image resizeMode='contain' style = {styles.card_image} source={Card}/>
-              <Text style = {styles.overview_text}>Overview: </Text>
-              <MyProgressChart/>
-              <Text style = {styles.transaction_text}>Transactions: </Text>
+        // <NativeBaseProvider>
+        //   <View style = {styles.container}>
+        //       <Text style = {styles.card_text}>Card: </Text>
+        //       <Image resizeMode='contain' style = {styles.card_image} source={Card}/>
+        //       <Text style = {styles.overview_text}>Overview: </Text>
+        //       <MyProgressChart/>
+        //       <Text style = {styles.transaction_text}>Transactions: </Text>
               
-              <Example/>
+        //       <BottomSheet
+        //         ref={useRef<BottomSheet>(null)}
+        //         snapPoints = {snapPoints}
+        //       >
+        //         <BottomSheetView>
+        //           <Text>Hi</Text>
+        //         </BottomSheetView>
+        //       </BottomSheet>
+              
+        //   </View>
+        // </NativeBaseProvider>
+
+      <NativeBaseProvider>
+        <View style = {styles.container}>
+        
+        <Text style = {styles.card_text}>Card: </Text>
+        <Image resizeMode='contain' style = {styles.card_image} source={Card}/>
+        <Text style = {styles.overview_text}>Overview: </Text>
+        <MyProgressChart/>
+        
+
+              <BottomSheet
+                ref={useRef(null)}
+                snapPoints = {snapPoints}
+              >
+                <BottomSheetView>
+                <Text style = {styles.transaction_text}>Transactions: </Text>
+                  <Example/>
+                </BottomSheetView>
+              </BottomSheet>
+            
           </View>
-        </NativeBaseProvider>
+      </NativeBaseProvider>
 
         
     );
@@ -120,7 +158,7 @@ const Example = () => {
     recentText: "$8.89",
     image: HoneyBird
   }];
-  return <Box height={200} p="5" pb="2">
+  return <Box height={500} p="5" pb="2">
       <FlatList data={data} renderItem={({
       item
     }) => <Box borderBottomWidth="1" _dark={{
@@ -177,7 +215,7 @@ const styles = StyleSheet.create({
         color:"grey"
     },
     transaction_text:{
-        left: '-33%',
+        left: '5%',
         top: 20,
         color:"grey"
     }
