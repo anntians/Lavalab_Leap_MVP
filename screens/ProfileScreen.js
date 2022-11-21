@@ -1,16 +1,25 @@
 import { Box, Heading, FlatList, HStack, Avatar, VStack, Spacer, NativeBaseProvider, ScrollView, Button} from 'native-base';
-import React, {useState} from 'react';
+import React, {useState, useRef,useCallback, useMemo,} from 'react';
 import { Image, View,StyleSheet, Text, Dimensions, TouchableOpacity } from 'react-native';
 import Slider from '@react-native-community/slider'
 import { gestureHandlerRootHOC } from 'react-native-gesture-handler';
 import { disableExpoCliLogging } from 'expo/build/logs/Logs';
 import warningIcon from '../assets/warningIcon.png';
+import BottomSheet, {BottomSheetView} from '@gorhom/bottom-sheet';
 
 import { initializeApp } from 'firebase/app';
 import {getFirestore, setDoc, doc} from 'firebase/firestore';
 
 
 function ProfileScreen(props) {
+
+  const sheetRef = useRef(null);
+  const [isOpen, setIsOpen] = useState(true);
+
+  const snapPoints = ['80%','35%'];
+  // const handleSheetChanges = useCallback((index: number) => {
+  //   console.log('handleSheetChanges', index);
+  // }, []);
 
   // Initialize Firebase
   const firebaseConfig = {
@@ -36,20 +45,20 @@ function ProfileScreen(props) {
 
 
     return (
-        <NativeBaseProvider>
-
-          <View style = {styles.container}>
-            <Text style = {styles.title}>Profile</Text>
-            <Text style = {styles.overview_text}>Current Credit Score</Text>
-            <View style={styles.circle}> 
-                <Text style={styles.score}>714</Text>
-            </View>
-            <Text style = {styles.overview_text}>Adjust Tommy's Credit Limit</Text>
+      <NativeBaseProvider>
+      
+      <View style = {styles.container}>
+        <Text style = {styles.title}>Profile</Text>
+        <Text style = {styles.overview_text}>Current Credit Score</Text>
+        <View style={styles.circle}> 
+          <Text style={styles.score}>714</Text>
+        </View>
+        <Text style = {styles.overview_text}>Adjust Tommy's Credit Limit</Text>
             
-            <View style={styles.square}> 
-                <Text style={styles.dollar_text}>${Math.floor(range*300)}</Text>
-            </View>
-            <Slider
+        <View style={styles.square}> 
+          <Text style={styles.dollar_text}>${Math.floor(range*300)}</Text>
+        </View>
+        <Slider
             style={styles.slider_style}
             onValueChange = {(value)=>setRange(value)}
             minimumValue = {0}
@@ -58,19 +67,23 @@ function ProfileScreen(props) {
             maximumTrackTintColor='#A0D99530'
             minimumTrackTintColor='#A0D995'
             />
-            {/* <Text style = {styles.overview_text}>Recent Notifications</Text> */}
-            {/* <Button title="Learn More" style = {styles.sendButton}  onPress={sendDataToFireStore} ></Button> */}
 
-            <TouchableOpacity style = {styles.button} onPress={sendDataToFireStore}>
-                <Text style = {styles.buttonText}>Add</Text>
-              </TouchableOpacity>
-
-
+        <TouchableOpacity style = {styles.button} onPress={sendDataToFireStore}>
+          <Text style = {styles.buttonText}>Change Limit</Text>
+        </TouchableOpacity>
+        <BottomSheet
+          ref={sheetRef}
+          // index={1}
+          snapPoints={snapPoints}
+          // enablePanDownToClose = {true}
+          // onChange={handleSheetChanges}
+        >
+          <BottomSheetView>
             <Example/>
-            
-          </View>
-            
-        </NativeBaseProvider>
+          </BottomSheetView>
+        </BottomSheet>
+      </View>
+      </NativeBaseProvider>
 
         
     );
@@ -131,7 +144,7 @@ const Example = () => {
       recentText: "Transaction above limit attempted!",
       image: warningIcon
     }];
-    return <Box height={200} p="5" pb="2">
+    return <Box height='500' p="5" pb="2">
         <FlatList data={data} renderItem={({
         item
       }) => <Box borderBottomWidth="1" _dark={{
@@ -165,7 +178,11 @@ const Example = () => {
 
 
 const styles = StyleSheet.create({
-    title: {
+  contentContainer: {
+    flex: 1,
+    alignItems: 'center',
+  },
+  title: {
         fontSize: 30,
         fontWeight: 'bold',
         color: 'black',
@@ -237,7 +254,7 @@ const styles = StyleSheet.create({
       height: 30,
       borderRadius: 5,
       backgroundColor:'#A0D995',
-      width:80,
+      width:100,
       alignItems:'center',
       justifyContent:'center'
     },
