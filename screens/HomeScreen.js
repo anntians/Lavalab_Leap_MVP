@@ -26,7 +26,7 @@ import {
 function HomeScreen(props) {
 
   const sheetRef = useRef(null);
-  const snapPoints = ["35%", "80%"];
+  const snapPoints = ["34%", "80%"];
 
     return (
         // <NativeBaseProvider>
@@ -54,16 +54,16 @@ function HomeScreen(props) {
         
         <Text style = {styles.card_text}>Card: </Text>
         <Image resizeMode='contain' style = {styles.card_image} source={Card}/>
-        <Text style = {styles.overview_text}>Overview: </Text>
+        <Text style = {styles.overview_text}>Overview Spending Compared to Limit: </Text>
         <MyProgressChart/>
-        
 
               <BottomSheet
-                ref={useRef(null)}
+                ref={sheetRef}
                 snapPoints = {snapPoints}
+                style = {styles.bottomSheetShadow}
               >
                 <BottomSheetView>
-                <Text style = {styles.transaction_text}>Transactions: </Text>
+                  <Text style = {styles.transaction_text}>Transactions: </Text>
                   <Example/>
                 </BottomSheetView>
               </BottomSheet>
@@ -79,7 +79,7 @@ const MyProgressChart = () => {
   return (
     <>
       <ProgressChart
-        data={[0.4, 0.6]}
+        data={[0.6, 0.9]}
         width={Dimensions.get('window').width - 16}
         height={150}
         chartConfig={{
@@ -111,7 +111,7 @@ const Example = () => {
     image: StarBucks
   }, {
     id: "3ac68afc-c605-48d3-a4f8-fbd91aa97f63",
-    fullName: "Cava",
+    fullName: "Cava (Child)",
     timeStamp: "11:11 PM",
     recentText: "$11.56",
     image: Cava
@@ -123,7 +123,7 @@ const Example = () => {
     image: HoneyBird
   }, {
     id: "68694a0f-3da1-431f-bd56-142371e29d72",
-    fullName: "Dulce",
+    fullName: "Dulce (Child)",
     timeStamp: "8:56 PM",
     recentText: "$4.78",
     image: Dulce
@@ -141,7 +141,7 @@ const Example = () => {
     image: HoneyBird
   }, {
     id: "68694a0f-3da1-431f-bd56-142371e29d78",
-    fullName: "Dulce",
+    fullName: "Dulce (Child)",
     timeStamp: "8:56 PM",
     recentText: "$4.78",
     image: Dulce
@@ -210,7 +210,7 @@ const styles = StyleSheet.create({
         color:"grey"
     },
     overview_text: {
-        left: '-36%',
+        left: '-10%',
         top: 20,
         color:"grey"
     },
@@ -218,7 +218,19 @@ const styles = StyleSheet.create({
         left: '5%',
         top: 20,
         color:"grey"
+    },
+    bottomSheetShadow:{
+      shadowColor: "#000",
+      shadowOffset: {
+        width: 0,
+        height: 3,
+      },
+      shadowOpacity: 0.29,
+      shadowRadius: 4.65,
+
+      elevation: 7,
     }
+
  
 })
 

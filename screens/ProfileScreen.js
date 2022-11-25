@@ -1,5 +1,5 @@
 import { Box, Heading, FlatList, HStack, Avatar, VStack, Spacer, NativeBaseProvider, ScrollView, Button} from 'native-base';
-import React, {useState, useRef,useCallback, useMemo,} from 'react';
+import React, {useState, useRef,useCallback, useMemo, useEffect} from 'react';
 import { Image, View,StyleSheet, Text, Dimensions, TouchableOpacity } from 'react-native';
 import Slider from '@react-native-community/slider'
 import { gestureHandlerRootHOC } from 'react-native-gesture-handler';
@@ -8,15 +8,37 @@ import warningIcon from '../assets/warningIcon.png';
 import BottomSheet, {BottomSheetView} from '@gorhom/bottom-sheet';
 
 import { initializeApp } from 'firebase/app';
-import {getFirestore, setDoc, doc} from 'firebase/firestore';
+import {getFirestore, setDoc, doc, collection, query, getDoc} from 'firebase/firestore';
 
 
 function ProfileScreen(props) {
 
+  useEffect(() => {
+    // write your code here, it's like componentWillMount
+    onScreenLoad();
+  }, [])
+
+  const onScreenLoad = async()=>{
+    const firestore = getFirestore(app);
+    const docRef = doc(firestore, "users", "features");
+    const docSnap = await getDoc(docRef);
+
+    if (docSnap.exists()) {
+      console.log("Document data:", docSnap.data().childSpendingLimit);
+      setLimitValue(docSnap.data().childSpendingLimit/300);
+      setRange(docSnap.data().childSpendingLimit/300);
+      
+    } else {
+      // doc.data() will be undefined in this case
+      console.log("No such document!");
+    }
+  }
+
   const sheetRef = useRef(null);
   const [isOpen, setIsOpen] = useState(true);
+  const [limitValue, setLimitValue] = useState(0);
 
-  const snapPoints = ['80%','35%'];
+  const snapPoints = ['40%','80%'];
   // const handleSheetChanges = useCallback((index: number) => {
   //   console.log('handleSheetChanges', index);
   // }, []);
@@ -39,6 +61,8 @@ function ProfileScreen(props) {
     await setDoc(doc(firestore, "users", "features"),{
       childSpendingLimit: Math.floor(range*300),
     });
+
+    
   }
 
     const [range,setRange] = useState(0)
@@ -49,16 +73,17 @@ function ProfileScreen(props) {
       
       <View style = {styles.container}>
         <Text style = {styles.title}>Profile</Text>
-        <Text style = {styles.overview_text}>Current Credit Score</Text>
+        <Text style = {styles.overview_text}>Current Credit Score:</Text>
         <View style={styles.circle}> 
           <Text style={styles.score}>714</Text>
         </View>
-        <Text style = {styles.overview_text}>Adjust Tommy's Credit Limit</Text>
+        <Text style = {styles.overview_text}>Adjust Tommy's Credit Limit:</Text>
             
         <View style={styles.square}> 
           <Text style={styles.dollar_text}>${Math.floor(range*300)}</Text>
         </View>
         <Slider
+            value={limitValue}
             style={styles.slider_style}
             onValueChange = {(value)=>setRange(value)}
             minimumValue = {0}
@@ -77,6 +102,7 @@ function ProfileScreen(props) {
           snapPoints={snapPoints}
           // enablePanDownToClose = {true}
           // onChange={handleSheetChanges}
+          style = {styles.bottomSheetShadow}
         >
           <BottomSheetView>
             <Example/>
@@ -147,9 +173,9 @@ const Example = () => {
     return <Box height='500' p="5" pb="2">
         <FlatList data={data} renderItem={({
         item
-      }) => <Box borderBottomWidth="1" _dark={{
+      }) => <Box style={{backgroundColor:'orange'}} borderBottomWidth="1" _dark={{
         borderColor: "muted.50"
-      }} borderColor="muted.800" pl={["0", "4"]} pr={["0", "5"]} py="2">
+      }} borderColor="muted.800" pl={["2", "4"]} pr={["0", "5"]} py="2">
               <HStack space={[12, 3]} justifyContent="space-between">
                 <Avatar size="48px" source={item.image} />
                 <VStack>
@@ -261,6 +287,20 @@ const styles = StyleSheet.create({
     buttonText:{
       color: 'white',
       fonSize:20
+    },
+    bottomSheetShadow:{
+      shadowColor: "#000",
+      shadowOffset: {
+        width: 0,
+        height: 3,
+      },
+      shadowOpacity: 0.29,
+      shadowRadius: 4.65,
+
+      elevation: 7,
+    },
+    alert:{
+      backgroundColor: 'red'
     }
 
  
