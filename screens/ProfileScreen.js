@@ -38,7 +38,7 @@ function ProfileScreen(props) {
   const [isOpen, setIsOpen] = useState(true);
   const [limitValue, setLimitValue] = useState(0);
 
-  const snapPoints = ['40%','80%'];
+  const snapPoints = ['47%','80%'];
   // const handleSheetChanges = useCallback((index: number) => {
   //   console.log('handleSheetChanges', index);
   // }, []);
@@ -72,8 +72,7 @@ function ProfileScreen(props) {
       <NativeBaseProvider>
       
       <View style = {styles.container}>
-        <Text style = {styles.title}>Profile</Text>
-        <Text style = {styles.overview_text}>Current Credit Score:</Text>
+        <Text style = {styles.overview_text}>Tommy's Credit Score:</Text>
         <View style={styles.circle}> 
           <Text style={styles.score}>714</Text>
         </View>
@@ -89,8 +88,8 @@ function ProfileScreen(props) {
             minimumValue = {0}
             maximumValue = {1}
             thumbTintColor = 'white'
-            maximumTrackTintColor='#A0D99530'
-            minimumTrackTintColor='#A0D995'
+            maximumTrackTintColor='#4CACBC30'
+            minimumTrackTintColor='#4CACBC'
             />
 
         <TouchableOpacity style = {styles.button} onPress={sendDataToFireStore}>
@@ -227,7 +226,7 @@ const styles = StyleSheet.create({
         paddingTop:20,
         paddingBottom:30,
         borderRadius: 150 / 2,
-        backgroundColor: '#A0D995',
+        backgroundColor: '#4CACBC',
         justifyContent: 'center',
         alignItems:'center'
     },
@@ -241,7 +240,7 @@ const styles = StyleSheet.create({
         width: 50,
         height: 30,
         borderRadius: 20 / 8,
-        backgroundColor: '#A0D995',
+        backgroundColor: '#4CACBC',
         justifyContent: 'center'
     },
     overview_text: {
@@ -279,7 +278,7 @@ const styles = StyleSheet.create({
     button:{
       height: 30,
       borderRadius: 5,
-      backgroundColor:'#A0D995',
+      backgroundColor:'#4CACBC',
       width:100,
       alignItems:'center',
       justifyContent:'center'

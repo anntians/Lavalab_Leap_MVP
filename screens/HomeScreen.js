@@ -26,7 +26,7 @@ import {
 function HomeScreen(props) {
 
   const sheetRef = useRef(null);
-  const snapPoints = ["34%", "80%"];
+  const snapPoints = ["30%", "80%"];
 
     return (
         // <NativeBaseProvider>
@@ -51,8 +51,8 @@ function HomeScreen(props) {
 
       <NativeBaseProvider>
         <View style = {styles.container}>
-        
-        <Text style = {styles.card_text}>Card: </Text>
+        <Text style = {styles.title}>Parent View</Text>
+        <Text style = {styles.card_text}>Card </Text>
         <Image resizeMode='contain' style = {styles.card_image} source={Card}/>
         <Text style = {styles.overview_text}>Overview Spending Compared to Limit: </Text>
         <MyProgressChart/>
@@ -88,7 +88,7 @@ const MyProgressChart = () => {
           backgroundGradientTo: 'white',
           decimalPlaces: 2,
           
-          color: (opacity = 1) => `rgba(160, 230, 149, ${opacity})`,
+          color: (opacity = 1) => `rgba(76,172,188, ${opacity})`,
           style: {
             borderRadius: 50,
           },
@@ -96,7 +96,7 @@ const MyProgressChart = () => {
         style={{
           marginVertical: 8,
           borderRadius: 5,
-          padding: 10,
+          padding: 25,
           width: -40
         }}
       />
@@ -213,7 +213,7 @@ const styles = StyleSheet.create({
     },
     overview_text: {
         left: '-10%',
-        top: 20,
+        top: 30,
         color:"grey"
     },
     transaction_text:{
@@ -231,7 +231,12 @@ const styles = StyleSheet.create({
       shadowRadius: 4.65,
 
       elevation: 7,
-    }
+    },
+    title: {
+      fontSize: 20,
+      fontWeight: 'bold',
+      color: 'black',
+  },
 
  
 })
