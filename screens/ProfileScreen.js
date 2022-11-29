@@ -115,19 +115,19 @@ function ProfileScreen(props) {
 }
 const Example = () => {
   const data = [{
-    id: "bd7acbea-c1b1-46c2-aed5-3ad53abb28ba",
+    id: "bd7acbea-c1b1-46c2-aed5-3ad53ab628ba",
     fullName: "Review Action from Nov 28, 12:47 PM",
     timeStamp: "",
     recentText: "You made a purchase at Dulce, you are now in the Red Zone for food!",
     image: warningIcon
   }, {
-    id: "3ac68afc-c605-48d3-a4f8-fbd91aa97f63",
+    id: "3ac68afc-c605-48d3-a4f8-fbd91aa92f63",
     fullName: "Review Action from Nov 23, 8:32 PM",
     timeStamp: "",
     recentText: "Transaction above limit attempted at Target!",
     image: warningIcon
   }, {
-    id: "58694a0f-3da1-471f-bd96-145571e29d72",
+    id: "58694a0f-3da1-471f-bd96-145571e29d77",
     fullName: "Review Action from Nov 20, 11:32 AM",
     timeStamp: "",
     recentText: "You made a purchase at Starbucks, you are now in the Yellow Zone for food!",
@@ -145,19 +145,19 @@ const Example = () => {
     recentText: "Transaction above limit attempted at Apple!",
     image: warningIcon
   }, {
-    id: "58694a0f-3da1-471f-bd96-145571e29d72",
+    id: "58694a0f-3da1-471f-bd96-145571e29d71",
     fullName: "Review Action from Nov 10, 11:32 AM",
     timeStamp: "",
     recentText: "You made a purchase at Starbucks, you are approaching the Yellow Zone for food!",
     image: warningIcon
   }, {
-    id: "bd7acbea-c1b1-46c2-aed5-3ad53abb28ba",
+    id: "bd7acbea-c1b1-46c2-aed5-3ad53abb27ba",
     fullName: "Review Action from Oct 28, 12:47 PM",
     timeStamp: "",
     recentText: "You made a purchase at Dulce, you are now in the Red Zone for food!",
     image: warningIcon
   }, {
-    id: "3ac68afc-c605-48d3-a4f8-fbd91aa97f63",
+    id: "3ac68afc-c605-48d3-a4f8-fbd91aa37f63",
     fullName: "Review Action from Oct 23, 8:32 PM",
     timeStamp: "",
     recentText: "Transaction above limit attempted at Target!",
