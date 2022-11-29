@@ -10,7 +10,6 @@ import { LinearGradient } from 'expo-linear-gradient';
 
 import { initializeApp } from 'firebase/app';
 import {getFirestore, setDoc, doc, collection, query, getDoc} from 'firebase/firestore';
-import { LinearGradient } from 'expo-linear-gradient';
 
 
 
@@ -78,40 +77,22 @@ function ProfileScreen(props) {
         <Text style = {styles.overview_text}>Tommy's Credit Score:</Text>
         <LinearGradient
         // Button Linear Gradient
-<<<<<<< HEAD
         colors={['#4CACBC', '#A0D995']}
         end = {{x:.9, y:.1}}
         style={styles.circle}>
           <Text style={styles.score}>714</Text>
       </LinearGradient>
-=======
-        colors={['#A0D995', '#4CACBC']}
-        end = {{x:.8, y:.9}}
-        style={styles.circle}>
-          <Text style={styles.score}>714</Text>
-      </LinearGradient>
-      
->>>>>>> cd1908cc3c57549fc31d97baff2d86d9d407d420
         <Text style = {styles.overview_text}>Adjust Tommy's Credit Limit:</Text>
             
         <LinearGradient
         // Button Linear Gradient
-<<<<<<< HEAD
         colors={['#A0D995', '#4CACBC']}
         end = {{x:0.1, y:.9}}
 
         style={styles.square}>
           <Text style={styles.dollar_text}>${Math.floor(range*300)}</Text>
       </LinearGradient>
-
-=======
-        colors={[ '#4CACBC','#A0D995']}
-        end = {{x:.9, y:.9}}
-        style={styles.square}>
-          <Text style={styles.dollar_text}>${Math.floor(range*300)}</Text>
-      </LinearGradient>
       
->>>>>>> cd1908cc3c57549fc31d97baff2d86d9d407d420
         <Slider
             value={limitValue}
             style={styles.slider_style}
@@ -248,8 +229,7 @@ const Example = () => {
     recentText: "You made a purchase at Starbucks, you are now in the Yellow Zone for food!",
     image: warningIcon
   }];
-  return <Box height='500' p="5" pb="2">
-<<<<<<< HEAD
+  return <Box height='600' p="5" pb="2">
         <FlatList data={data} renderItem={({
         item
       }) => <Box style={{backgroundColor:'#F6E3C5'}} borderBottomWidth="4" borderBottomColor="white" borderRadius="2xl" _dark={{
@@ -271,17 +251,6 @@ const Example = () => {
                 </VStack>
                 <Spacer />
                 <Text fontSize="xs" _dark={{
-=======
-      <FlatList data={data} renderItem={({
-      item
-    }) => <Box style={{backgroundColor:'#F6E3C5'}} borderBottomWidth="4" borderBottomColor="white" borderRadius="2xl" _dark={{
-      borderColor: "light.50"
-    }} borderColor="muted.800" pl={["2", "5"]} pr={["100", "10"]} py="2">
-            <HStack space={[3, 0]} justifyContent="space-between">
-              <Avatar size="48px" source={item.image} />
-              <VStack>
-                <Text _dark={{
->>>>>>> cd1908cc3c57549fc31d97baff2d86d9d407d420
             color: "warmGray.50"
           }} color="coolGray.800" alignSelf="flex-start">
                   {item.timeStamp}
