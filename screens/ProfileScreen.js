@@ -9,6 +9,8 @@ import BottomSheet, {BottomSheetView} from '@gorhom/bottom-sheet';
 
 import { initializeApp } from 'firebase/app';
 import {getFirestore, setDoc, doc, collection, query, getDoc} from 'firebase/firestore';
+import { LinearGradient } from 'expo-linear-gradient';
+
 
 
 function ProfileScreen(props) {
@@ -73,14 +75,24 @@ function ProfileScreen(props) {
       
       <View style = {styles.container}>
         <Text style = {styles.overview_text}>Tommy's Credit Score:</Text>
-        <View style={styles.circle}> 
+        <LinearGradient
+        // Button Linear Gradient
+        colors={['#4CACBC', '#A0D995']}
+        end = {{x:.9, y:.1}}
+        style={styles.circle}>
           <Text style={styles.score}>714</Text>
-        </View>
+      </LinearGradient>
         <Text style = {styles.overview_text}>Adjust Tommy's Credit Limit:</Text>
             
-        <View style={styles.square}> 
+        <LinearGradient
+        // Button Linear Gradient
+        colors={['#A0D995', '#4CACBC']}
+        end = {{x:0.1, y:.9}}
+
+        style={styles.square}>
           <Text style={styles.dollar_text}>${Math.floor(range*300)}</Text>
-        </View>
+      </LinearGradient>
+
         <Slider
             value={limitValue}
             style={styles.slider_style}
@@ -218,34 +230,34 @@ const Example = () => {
     image: warningIcon
   }];
   return <Box height='500' p="5" pb="2">
-      <FlatList data={data} renderItem={({
-      item
-    }) => <Box style={{backgroundColor:'orange'}} borderBottomWidth="1" _dark={{
-      borderColor: "muted.50"
-    }} borderColor="muted.800" pl={["2", "5"]} pr={["100", "10"]} py="2">
-            <HStack space={[3, 0]} justifyContent="space-between">
-              <Avatar size="48px" source={item.image} />
-              <VStack>
-                <Text _dark={{
+        <FlatList data={data} renderItem={({
+        item
+      }) => <Box style={{backgroundColor:'#F6E3C5'}} borderBottomWidth="4" borderBottomColor="white" borderRadius="2xl" _dark={{
+        borderColor: "light.50"
+      }} borderColor="muted.800" pl={["2", "5"]} pr={["100", "10"]} py="2">
+              <HStack space={[3, 0]} justifyContent="space-between">
+                <Avatar size="48px" source={item.image} />
+                <VStack>
+                  <Text _dark={{
+              color: "warmGray.50"
+            }} color="coolGray.800" bold>
+                    {item.fullName}
+                  </Text>
+                  <Text color="coolGray.600" _dark={{
+              color: "warmGray.200"
+            }}>
+                    {item.recentText}
+                  </Text>
+                </VStack>
+                <Spacer />
+                <Text fontSize="xs" _dark={{
             color: "warmGray.50"
-          }} color="coolGray.800" bold>
-                  {item.fullName}
+          }} color="coolGray.800" alignSelf="flex-start">
+                  {item.timeStamp}
                 </Text>
-                <Text color="coolGray.600" _dark={{
-            color: "warmGray.200"
-          }}>
-                  {item.recentText}
-                </Text>
-              </VStack>
-              <Spacer />
-              <Text fontSize="xs" _dark={{
-          color: "warmGray.50"
-        }} color="coolGray.800" alignSelf="flex-start">
-                {item.timeStamp}
-              </Text>
-            </HStack>
-          </Box>} keyExtractor={item => item.id} />
-    </Box>;
+              </HStack>
+            </Box>} keyExtractor={item => item.id} />
+      </Box>;
 };
   
 

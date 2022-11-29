@@ -51,7 +51,6 @@ function HomeScreen(props) {
 
       <NativeBaseProvider>
         <View style = {styles.container}>
-        <Text style = {styles.title}>Parent View</Text>
         <Text style = {styles.card_text}>Card </Text>
         <Image resizeMode='contain' style = {styles.card_image} source={Card}/>
         <Text style = {styles.overview_text}>Overview Spending Compared to Limit: </Text>
