@@ -51,7 +51,6 @@ function HomeScreen(props) {
 
       <NativeBaseProvider>
         <View style = {styles.container}>
-        <Text style = {styles.title}>Parent View</Text>
         <Text style = {styles.card_text}>Card </Text>
         <Image resizeMode='contain' style = {styles.card_image} source={Card}/>
         <Text style = {styles.overview_text}>Overview Spending Compared to Limit: </Text>
@@ -211,7 +210,7 @@ const Example = () => {
   return <Box height={500} p="5" pb="2">
       <FlatList data={data} renderItem={({
       item
-    }) => <Box borderBottomWidth="1" _dark={{
+    }) => <Box borderBottomWidth="0" _dark={{
       borderColor: "muted.50"
     }} borderColor="muted.800" pl={["0", "4"]} pr={["0", "5"]} py="2">
             <HStack space={[3, 0]} justifyContent="space-between">
